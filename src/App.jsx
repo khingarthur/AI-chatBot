@@ -1,16 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import { ChatInput } from '../components/ChatInput'
-import { ChatMessage } from '../components/ChatMessage'
+import { useState } from 'react';
+import reactLogo from './assets/react.svg';
+import viteLogo from './assets/vite.svg';
+import heroImg from './assets/hero.png';
+import { ChatInput } from '../components/ChatInput';
+import { ChatMessage } from '../components/ChatMessage';
+import myFileContent from './assets/file.txt?raw';
 
 const chatMessages = [
-  {
-    message: "Hello Chatbot",
-    sender: "user",
-    id: 1
-  },
+  
   {
     message: "Hello! How can I help you",
     sender: "robot",
@@ -22,7 +19,7 @@ const chatMessages = [
     id: 3
   },
   {
-    message: "Today is september 27",
+    message: "Today is june 20",
     sender: "robot",
     id: 4
   },
@@ -42,8 +39,21 @@ function App() {
   
   const [messages, setMessage] = useState(chatMessages);
   const [input, setInput] = useState("");
+  const [disabled, setDisabled] = useState (false);
 
-  async function handleClick(){
+
+  const response = async () =>{
+    const allLines = myFileContent.split("\n");
+    const randomNumber = Math.floor(Math.random() * 4);
+    console.log(allLines[randomNumber]);
+    return allLines[randomNumber];
+  }  
+
+  async function handleClick(event){
+
+    if (input === "") return
+
+    setDisabled(true)
 
     const UserMessage = {
       message: input,
@@ -61,22 +71,33 @@ function App() {
     console.log(newChatMessages);
     setInput("")
 
-    const response = await fetch("");
-    const data = await response.json();
-    const res = data.message;
-    const robotMessage = {
-      message: res,
+    const botResponse = response();
+    const botMessage = {
+      message: botResponse,
       sender: "robot",
       id: crypto.randomUUID()
     }
-    
 
-    setMessage([
+    const newerChatMessages = [
       ...newChatMessages,
-      robotMessage
-    ]);
+      botMessage
+    ]
 
-    ;
+    setTimeout(() => {
+      
+      setMessage(newerChatMessages);
+      setDisabled(false)
+    }, 5000);
+
+    console.log(newChatMessages);
+
+  }
+
+
+
+  function handleKeyDown (event){
+    if (event.key == "Enter") handleClick();
+    if (event.key == "Escape") setInput("");
   }
 
   function saveInputText(event){
@@ -84,18 +105,34 @@ function App() {
   }
   
   return (
-    <>
-      <ChatInput onClick={handleClick} onChange={saveInputText} value={input}/>
+    <div className="container mt-4" >
+      <div className="row"> 
+        <div className="col-md-8 mx-auto">
 
-      {
-        messages.map((chatMessage) =>(
-          <div key={chatMessage.id}>
-            <br />
-            <ChatMessage {...chatMessage} />
-          </div>
-        ))
-      }
-    </>
+          {
+            messages.map((chatMessage) =>(
+              <div key={chatMessage.id}>
+                <br />
+                <ChatMessage {...chatMessage} />
+              </div>
+            ))
+          }
+
+          <br />
+
+        <ChatInput 
+          onClick={handleClick} 
+          onChange={saveInputText}
+          onKeyDown={handleKeyDown}
+          value={disabled ? "Please wait, response loading..." : input }
+          disabled={disabled}
+        />
+
+
+        </div>
+      </div>
+      
+    </div>
     
   )
 
