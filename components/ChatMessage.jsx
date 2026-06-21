@@ -12,7 +12,7 @@ export const ChatMessage = ({message, sender, ref}) =>{
 
         {sender === "robot" && (
             <img 
-            src="image.png" 
+            src="/image.png" 
             alt="robot"
             className="rounded-circle me-2 align-self-end"
             width="40" 
@@ -32,7 +32,7 @@ export const ChatMessage = ({message, sender, ref}) =>{
 
         {sender === "user" && (
             <img 
-            src="me.png" 
+            src="/me.png" 
             alt="user"
             className="img-fluid chat-avatar rounded-circle ms-2 align-self-end" 
             width="40" 
