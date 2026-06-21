@@ -1,10 +1,14 @@
-export const ChatMessage = ({message, sender}) =>{
+import ReactMarkdown from 'react-markdown';
+
+export const ChatMessage = ({message, sender, ref}) =>{
     
     // const imagePath = sender === "user"? "/shirt.png" : "/person.svg" ;
     const isUser = sender === 'user';
 
     return (
-        <div className={`d-flex mb-3 ${isUser ? 'justify-content-end' : 'justify-content-start'}`}>
+        <div 
+            ref={ref}
+            className={`d-flex mb-3 ${isUser ? 'justify-content-end' : 'justify-content-start'}`}>
 
         {sender === "robot" && (
             <img 
@@ -23,7 +27,7 @@ export const ChatMessage = ({message, sender}) =>{
             borderRadius: '15px'
             }}
         >
-            {message}
+            <ReactMarkdown>{message}</ReactMarkdown>
         </div>
 
         {sender === "user" && (
