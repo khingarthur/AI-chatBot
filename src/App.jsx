@@ -9,29 +9,9 @@ import myFileContent from './assets/file.txt?raw';
 const chatMessages = [
   
   {
-    message: "Hello! How can I help you",
+    message: "Hello! I'm Kobby. How can I help you?",
     sender: "robot",
     id: 2
-  },
-  {
-    message: "Can you get me todays date ?",     
-    sender: "user",
-    id: 3
-  },
-  {
-    message: "Today is june 20",
-    sender: "robot",
-    id: 4
-  },
-  {
-    message: "How about flip a coin",
-    sender: "user",
-    id: 5
-  },
-  {
-    message: "sure, you got tails",
-    sender: "robot",
-    id: 6
   }
 ] 
 
@@ -86,7 +66,7 @@ function App() {
 
     // make api request to the backend
     try {
-      const response = await fetch("http://localhost:5000/api/chat",{
+      const response = await fetch("https://ai-chatbot-uetw.onrender.com/api/chat",{
         method: "POST",
         headers: {
           "Content-Type" : "application/json",
