@@ -13,7 +13,10 @@ app.use(express.json());
 // Initialize the Gemini Client
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-lite" });
+const model = genAI.getGenerativeModel({ 
+    model: "gemini-2.5-flash-lite",
+    systemInstruction: "Your name is Kobby. You are a helpful, friendly AI assistant built by a brilliant developer. Keep your tone casual, smart, and engaging."
+});
 
 // The Chat API Endpoint
 app.post('/api/chat', async (req, res) => {
