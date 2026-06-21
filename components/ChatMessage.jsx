@@ -12,7 +12,7 @@ export const ChatMessage = ({message, sender, ref}) =>{
 
         {sender === "robot" && (
             <img 
-            src="/me.jpg" 
+            src="/robot.png" 
             alt="robot"
             className="rounded-circle me-2 align-self-end"
             width="55" 
@@ -21,16 +21,18 @@ export const ChatMessage = ({message, sender, ref}) =>{
         )}
 
         <div 
-            className={`p-3 shadow-sm ${isUser ? 'bg-primary text-white' : 'bg-light text-dark'}`}
+            className={`px-3 py-1 shadow-sm  ${isUser ? 'bg-primary text-white' : 'bg-light text-dark'}`}
             style={{
             maxWidth: '75%',
-            borderRadius: '15px'
+            borderRadius: '15px',
             }}
         >
-            <ReactMarkdown>{message}</ReactMarkdown>
+            <ReactMarkdown components={{ p: ({node, ...props}) => <p style={{ marginBottom: 0 }} {...props} /> }}>
+                {message}
+            </ReactMarkdown>
         </div>
 
-        {sender === "user" && (
+        {/* {sender === "user" && (
             <img 
             src="/image.png" 
             alt="user"
@@ -38,7 +40,7 @@ export const ChatMessage = ({message, sender, ref}) =>{
             width="40" 
             height="40" 
             />
-        )}
+        )} */}
 
         </div>
     );

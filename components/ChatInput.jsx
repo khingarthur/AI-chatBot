@@ -10,10 +10,15 @@ export const ChatInput = ({onClick, onChange, value, onKeyDown, disabled}) =>{
                 value={value}
                 onKeyDown={onKeyDown}
                 disabled ={disabled}
-                className="form-control form-control-lg"
+                className="form-control form-control-lg shadow-sm border-0"
             />
 
-            <button className="btn btn-primary px-4 ms-3" onClick={onClick} >Send</button>
+            <button 
+                className="btn btn-primary px-4 ms-3 shadow-sm" 
+                onClick={onClick} 
+            >
+                Send
+            </button>
         </div>
     )
 }

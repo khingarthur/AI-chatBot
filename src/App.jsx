@@ -1,10 +1,8 @@
 import { useState, useEffect, useRef, useEffectEvent } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from './assets/vite.svg';
-import heroImg from './assets/hero.png';
+
 import { ChatInput } from '../components/ChatInput';
 import { ChatMessage } from '../components/ChatMessage';
-import myFileContent from './assets/file.txt?raw';
+import { Header } from '../components/Header';
 
 const chatMessages = [
   
@@ -133,11 +131,12 @@ function App() {
       
       {/* 2. Create the flex column setup */}
       <div className="col-12 col-md-12 col-lg-8 mx-auto d-flex flex-column h-100">
+       
         <div className="col-md-10 mx-auto d-flex flex-column h-100">
-
+          <Header />
           {/* flex-grow-1 expands this box, pushing the input to the bottom */}
           {/* overflow-auto makes it scrollable */}
-          <div className="flex-grow-1 overflow-auto mb-3 p-3 bg-white rounded shadow-sm border hide-scrollbar">
+          <div className="flex-grow-1 overflow-auto mb-3  p-3 bg-white rounded-bottom-3 shadow-lg border hide-scrollbar">
             
             {messages.map((chatMessage) => (
               <div key={chatMessage.id}>
@@ -152,7 +151,7 @@ function App() {
               onClick={handleClick}
               onChange={saveInputText}
               onKeyDown={handleKeyDown}
-              value={disabled ? "Please wait, generating response..." : input}
+              value={disabled ? "Generating response..." : input}
               disabled={disabled}
             />
           </div>
