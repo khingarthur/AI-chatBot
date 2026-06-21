@@ -28,14 +28,7 @@ app.post('/api/chat', async (req, res) => {
       return res.status(400).json({ error: "Please Enter a Message" });
     }
 
-    // Use the simpler string form so the SDK formats the content correctly
-    // (passing a `contents` array with raw strings bypasses internal formatting
-    // and causes the API to reject the request)
-    console.log('Sending generateContent call for model:', model?.model, 'message:', message);
-
     const result = await model.generateContent(message);
-    console.log('Gemini raw response candidates:', result?.candidates);
-
     const responseText = result.response.text();
 
     // Send back a response
