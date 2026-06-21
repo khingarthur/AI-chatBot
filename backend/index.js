@@ -28,7 +28,18 @@ app.post('/api/chat', async (req, res) => {
       return res.status(400).json({ error: "Please Enter a Message" });
     }
 
-    const result = await model.generateContent(message);
+    // Build explicit generateContent request and log it for debugging
+    const generateRequest = {
+      contents: [ message ],
+      // include systemInstruction here as an override to be sure it's applied
+      systemInstruction: "Your name is Kobby. You are a helpful, friendly AI assistant built by a brilliant developer. Keep your tone casual, smart, and engaging."
+    };
+
+    console.log('Sending generateContent request:', JSON.stringify({ model: model?.model, generateRequest }));
+
+    const result = await model.generateContent(generateRequest);
+    console.log('Gemini raw response:', result);
+
     const responseText = result.response.text();
 
     // Send back a response

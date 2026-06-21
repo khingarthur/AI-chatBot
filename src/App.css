@@ -190,3 +190,14 @@ chat-avatar {
   object-fit: cover;    /* Prevents the image from stretching/squishing */
   border-radius: 50%;   /* Turns the square into a perfect circle */
 }
+
+/* Hides the scrollbar but keeps the element scrollable */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+/* Chrome, Safari, and Opera */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; 
+}
