@@ -9,7 +9,7 @@ import myFileContent from './assets/file.txt?raw';
 const chatMessages = [
   
   {
-    message: "Hello! I'm Kobby. How can I help you?",
+    message: "Hello! I'm Kobby, your AI assistant. \n You can press 'Enter' to send your message and 'Escape' to clear your input. \n How can I help you today?",
     sender: "robot",
     id: 2
   }
@@ -152,7 +152,7 @@ function App() {
               onClick={handleClick}
               onChange={saveInputText}
               onKeyDown={handleKeyDown}
-              value={disabled ? "Please wait..." : input}
+              value={disabled ? "Please wait, generating response..." : input}
               disabled={disabled}
             />
           </div>
