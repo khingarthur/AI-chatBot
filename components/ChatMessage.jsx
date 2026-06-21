@@ -15,8 +15,8 @@ export const ChatMessage = ({message, sender, ref}) =>{
             src="/me.jpg" 
             alt="robot"
             className="rounded-circle me-2 align-self-end"
-            width="40" 
-            height="40"
+            width="55" 
+            height="55"
             />
         )}
 
