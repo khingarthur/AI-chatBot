@@ -19,8 +19,8 @@ export const Header = () => {
                             fontFamily: "'Orbitron', sans-serif", 
                             fontWeight: 900, 
                             letterSpacing: '1px'
-                        }}
-                >Ask KOBBY
+                    }}>
+                    Ask KOBBY
                 </span>
             </div>
         </header>
