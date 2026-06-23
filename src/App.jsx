@@ -62,7 +62,7 @@ function App() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "x-frontend-secret": import.meta.env.FRONTEND_SECRET
+            "x-frontend-secret": process.env.FRONTEND_SECRET
           },
           body: JSON.stringify({ message: input }),
         },
