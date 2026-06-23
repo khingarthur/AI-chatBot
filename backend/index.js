@@ -20,6 +20,13 @@ const model = genAI.getGenerativeModel({
 
 // The Chat API Endpoint
 app.post('/api/chat', async (req, res) => {
+  
+  // Check for a secret password
+  const clientSecret = req.headers['x-frontend-secret'];
+  if (clientSecret !== process.env.FRONTEND_SECRET) {
+    return res.status(401).json({ error: "Unauthorized: Nice try, hacker!" });
+  }
+
   try {
 
     const { message } = req.body;
